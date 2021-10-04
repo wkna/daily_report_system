@@ -50,5 +50,16 @@ public class EmployeeAction extends ActionBase {
         forward(ForwardConst.FW_EMP_INDEX);
 
     }
+    /**
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void entryNew() throws ServletException, IOException {
+
+        putRequestScope(AttributeConst.TOKEN, getTokenId());
+        putRequestScope(AttributeConst.EMPLOYEE, new EmployeeView());
+
+        forward(ForwardConst.FW_EMP_NEW);
+    }
 
 }
