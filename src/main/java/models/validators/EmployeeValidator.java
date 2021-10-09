@@ -20,19 +20,16 @@ public class EmployeeValidator {
             EmployeeService service, EmployeeView ev, Boolean codeDuplicateCheckFlag, Boolean passwordCheckFlag) {
         List<String> errors = new ArrayList<String>();
 
-        //社員番号のチェック
         String codeError = validateCode(service, ev.getCode(), codeDuplicateCheckFlag);
         if (!codeError.equals("")) {
             errors.add(codeError);
         }
 
-        //氏名のチェック
         String nameError = validateName(ev.getName());
         if (!nameError.equals("")) {
             errors.add(nameError);
         }
 
-        //パスワードのチェック
         String passError = validatePassword(ev.getPassword(), passwordCheckFlag);
         if (!passError.equals("")) {
             errors.add(passError);
@@ -77,7 +74,6 @@ public class EmployeeValidator {
     }
 
     /**
-     * 氏名に入力値があるかをチェックし、入力値がなければエラーメッセージを返却
      * @param name 氏名
      * @return エラーメッセージ
      */
