@@ -27,10 +27,6 @@ public class EmployeeAction extends ActionBase {
         service.close();
     }
 
-    /**
-     * @throws ServletException
-     * @throws IOException
-     */
     public void index() throws ServletException, IOException {
 
         if(checkAdmin()) {
@@ -96,10 +92,6 @@ public class EmployeeAction extends ActionBase {
 
         }
     }
-    /**
-     * @throws ServletException
-     * @throws IOException
-     */
     public void show() throws ServletException, IOException {
 
         if (checkAdmin()) {
@@ -115,10 +107,6 @@ public class EmployeeAction extends ActionBase {
 
         forward(ForwardConst.FW_EMP_SHOW);
     }}
-    /**
-     * @throws ServletException
-     * @throws IOException
-     */
     public void edit() throws ServletException, IOException {
 
         if (checkAdmin()) {
@@ -136,10 +124,6 @@ public class EmployeeAction extends ActionBase {
         forward(ForwardConst.FW_EMP_EDIT);
         }
     }
-    /**
-     * @throws ServletException
-     * @throws IOException
-     */
     public void update() throws ServletException, IOException {
 
         if (checkAdmin() && checkToken()) {
