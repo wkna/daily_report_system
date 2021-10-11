@@ -8,8 +8,10 @@ import constants.MessageConst;
 import services.EmployeeService;
 
 public class EmployeeValidator {
+    
     public static List<String> validate(
             EmployeeService service, EmployeeView ev, Boolean codeDuplicateCheckFlag, Boolean passwordCheckFlag) {
+       
         List<String> errors = new ArrayList<String>();
 
         String codeError = validateCode(service, ev.getCode(), codeDuplicateCheckFlag);
