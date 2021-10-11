@@ -9,6 +9,8 @@ import actions.views.EmployeeView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
+import constants.MessageConst;
+import constants.PropertyConst;
 import services.EmployeeService;
 
 public class EmployeeAction extends ActionBase {
@@ -30,10 +32,10 @@ public class EmployeeAction extends ActionBase {
 
         long employeeCount = service.countAll();
 
-        putRequestScope(AttributeConst.EMPLOYEES, employees); //取得した従業員データ
-        putRequestScope(AttributeConst.EMP_COUNT, employeeCount); //全ての従業員データの件数
-        putRequestScope(AttributeConst.PAGE, page); //ページ数
-        putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE); //1ページに表示するレコードの数
+        putRequestScope(AttributeConst.EMPLOYEES, employees);
+        putRequestScope(AttributeConst.EMP_COUNT, employeeCount);
+        putRequestScope(AttributeConst.PAGE, page);
+        putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE);
 
         String flush = getSessionScope(AttributeConst.FLUSH);
         if (flush != null) {
@@ -44,5 +46,39 @@ public class EmployeeAction extends ActionBase {
         forward(ForwardConst.FW_EMP_INDEX);
 
     }
+    public void create() throws ServletException, IOException {
 
+        if (checkToken()) {
+
+            EmployeeView ev = new EmployeeView(
+                    null,
+                    getRequestParam(AttributeConst.EMP_CODE),
+                    getRequestParam(AttributeConst.EMP_NAME),
+                    getRequestParam(AttributeConst.EMP_PASS),
+                    toNumber(getRequestParam(AttributeConst.EMP_ADMIN_FLG)),
+                    null,
+                    null,
+                    AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
+
+            String pepper = getContextScope(PropertyConst.PEPPER);
+
+            List<String> errors = service.create(ev, pepper);
+
+            if (errors.size() > 0) {
+
+                putRequestScope(AttributeConst.TOKEN, getTokenId());
+                putRequestScope(AttributeConst.EMPLOYEE, ev);
+                putRequestScope(AttributeConst.ERR, errors);
+
+                forward(ForwardConst.FW_EMP_NEW);
+
+            } else {
+
+                putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
+
+                redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
+            }
+
+        }
+    }
 }
