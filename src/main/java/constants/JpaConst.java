@@ -20,6 +20,7 @@ public interface JpaConst {
     int ROLE_GENERAL = 0;
     int EMP_DELTURE = 1;
     int EMP_DEL_FALSE = 0;
+    int EMP_DEL_TRUE = 0;
 
     String TABLE_REP = "reports";
     String REP_COL_ID = "id";
@@ -60,6 +61,5 @@ public interface JpaConst {
 
     String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
-
 
 }
