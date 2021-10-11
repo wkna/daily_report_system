@@ -15,8 +15,10 @@ import services.EmployeeService;
 
 public class EmployeeAction extends ActionBase {
 
-    public void process() throws ServletException, IOException {
+    private EmployeeService service;
 
+    @Override
+    public void process() throws ServletException, IOException {
         service = new EmployeeService();
 
         invoke();
