@@ -6,10 +6,12 @@ public interface JpaConst {
     int ROW_PER_PAGE = 15;
 
     String TABLE_EMP = "employees";
+
     String EMP_COL_ID = "id";
     String EMP_COL_CODE = "code";
     String EMP_COL_NAME = "name";
     String EMP_COL_PASS = "password";
+    String EMP_COL_ADMIN_FLAG = "admin_flag";
     String EMP_COL_CREATED_AT = "created_at";
     String EMP_COL_UPDATED_AT = "updated_at";
     String EMP_COL_DELETE_FLAG = "delete_flag";
