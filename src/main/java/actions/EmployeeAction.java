@@ -45,8 +45,16 @@ public class EmployeeAction extends ActionBase {
         }
 
         forward(ForwardConst.FW_EMP_INDEX);
-
     }
+
+        public void entryNew() throws ServletException, IOException {
+
+            putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+            putRequestScope(AttributeConst.EMPLOYEE, new EmployeeView()); //空の従業員インスタンス
+
+            forward(ForwardConst.FW_EMP_NEW);
+        }
+
     public void create() throws ServletException, IOException {
 
         if (checkToken()) {
