@@ -148,9 +148,9 @@ public class ReportAction extends ActionBase {
 
             if (errors.size() > 0) {
 
-                putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
-                putRequestScope(AttributeConst.REPORT, rv); //入力された日報情報
-                putRequestScope(AttributeConst.ERR, errors); //エラーのリスト
+                putRequestScope(AttributeConst.TOKEN, getTokenId());
+                putRequestScope(AttributeConst.REPORT, rv);
+                putRequestScope(AttributeConst.ERR, errors);
 
                 forward(ForwardConst.FW_REP_EDIT);
             } else {
