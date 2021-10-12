@@ -18,6 +18,8 @@ public class TopAction extends ActionBase {
     @Override
     public void process() throws ServletException, IOException {
 
+        service = new ReportService();
+
         invoke();
 
         service.close();
